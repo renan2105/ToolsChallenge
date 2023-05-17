@@ -1,11 +1,14 @@
 package com.toolschallenge.pagamento.entities;
 
 import com.toolschallenge.pagamento.entities.enums.FormaPagamentoTipoEnum;
+import jakarta.validation.constraints.NotEmpty;
 
 public class FormaPagamento {
 
+    @NotEmpty(message = "Tipo de pagamento deve ser informado.")
     private Integer tipo;
 
+    @NotEmpty(message = "Parcelas deve ser informado.")
     private Integer parcelas;
 
 

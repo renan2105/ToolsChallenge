@@ -1,6 +1,8 @@
 package com.toolschallenge.pagamento.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
 import java.io.Serializable;
 
@@ -12,6 +14,7 @@ public class Transacao implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotEmpty(message = "Cartão deve ser informado.")
     private String cartao;
 
     @Embedded

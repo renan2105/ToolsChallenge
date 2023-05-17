@@ -2,16 +2,18 @@ package com.toolschallenge.pagamento.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.toolschallenge.pagamento.entities.enums.DescricaoStatusEnum;
+import jakarta.validation.constraints.NotEmpty;
 
 import java.time.Instant;
 
 public class Descricao {
-
+    @NotEmpty(message = "Valor deve ser informado.")
     private String valor;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss", timezone = "GMT-3")
     private Instant dataHora;
 
+    @NotEmpty(message = "Nome do estabelecimento deve ser informado.")
     private String estabelecimento;
 
     private String nsu;

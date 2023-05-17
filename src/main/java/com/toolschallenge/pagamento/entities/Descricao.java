@@ -1,5 +1,6 @@
 package com.toolschallenge.pagamento.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.toolschallenge.pagamento.entities.enums.DescricaoStatusEnum;
 
 import java.time.Instant;
@@ -8,11 +9,12 @@ public class Descricao {
 
     private String valor;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss", timezone = "GMT-3")
     private Instant dataHora;
 
     private String estabelecimento;
 
-    private Integer nsu;
+    private String nsu;
 
     private String codigoAutorizacao;
 
@@ -22,11 +24,7 @@ public class Descricao {
     public Descricao() {
     }
 
-    public Descricao(String valor) {
-        this.valor = valor;
-    }
-
-    public Descricao(String valor, Instant dataHora, String estabelecimento, Integer nsu, String codigoAutorizacao, DescricaoStatusEnum status) {
+    public Descricao(String valor, Instant dataHora, String estabelecimento, String nsu, String codigoAutorizacao, DescricaoStatusEnum status) {
         this.valor = valor;
         this.dataHora = dataHora;
         this.estabelecimento = estabelecimento;
@@ -60,11 +58,11 @@ public class Descricao {
         this.estabelecimento = estabelecimento;
     }
 
-    public Integer getNsu() {
+    public String getNsu() {
         return nsu;
     }
 
-    public void setNsu(Integer nsu) {
+    public void setNsu(String nsu) {
         this.nsu = nsu;
     }
 

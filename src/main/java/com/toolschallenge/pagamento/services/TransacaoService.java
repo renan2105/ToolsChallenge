@@ -1,6 +1,7 @@
 package com.toolschallenge.pagamento.services;
 
 import com.toolschallenge.pagamento.entities.Transacao;
+import com.toolschallenge.pagamento.entities.enums.DescricaoStatusEnum;
 import com.toolschallenge.pagamento.repositories.TransacaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,4 +18,9 @@ public class TransacaoService {
       Optional<Transacao> transacao = transacaoRepository.findById(id);
       return transacao.get();
     };
+
+    public Transacao pagamento(Transacao transacao){
+        transacao.getDescricao().setStatus(DescricaoStatusEnum.AUTORIZADO);
+        return transacaoRepository.save(transacao);
+    }
 }

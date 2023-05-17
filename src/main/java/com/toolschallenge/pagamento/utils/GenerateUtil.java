@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import java.util.Random;
 
 @Component
-public class GenerateUtils {
+public class GenerateUtil {
 
     public String generateNsu(){
         Random random = new Random();

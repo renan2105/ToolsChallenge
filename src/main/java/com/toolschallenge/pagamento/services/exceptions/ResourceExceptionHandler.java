@@ -19,4 +19,12 @@ public class ResourceExceptionHandler {
         StandardError responseError = new StandardError(Instant.now(), status.value(), error, exception.getMessage(), request.getRequestURI());
         return ResponseEntity.status(status).body(responseError);
     }
+
+    @ExceptionHandler(ValidateException.class)
+    public ResponseEntity<StandardError> validateException(ValidateException exception, HttpServletRequest request){
+        String error = "Validate Error.";
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+        StandardError responseError = new StandardError(Instant.now(), status.value(), error, exception.getMessage(), request.getRequestURI());
+        return ResponseEntity.status(status).body(responseError);
+    }
 }

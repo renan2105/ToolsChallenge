@@ -1,9 +1,6 @@
 package com.toolschallenge.pagamento.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.io.Serializable;
 
@@ -17,15 +14,21 @@ public class Transacao implements Serializable {
 
     private String cartao;
 
+    @Embedded
+    private Descricao descricao;
+
+    @Embedded
+    private FormaPagamento formaPagamento;
 
     public Transacao() {
     }
 
-    public Transacao(Long id, String cartao) {
+    public Transacao(Long id, String cartao, Descricao descricao, FormaPagamento formaPagamento) {
         this.id = id;
         this.cartao = cartao;
+        this.descricao = descricao;
+        this.formaPagamento = formaPagamento;
     }
-
 
     public Long getId() {
         return id;
@@ -43,4 +46,19 @@ public class Transacao implements Serializable {
         this.cartao = cartao;
     }
 
+    public Descricao getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(Descricao descricao) {
+        this.descricao = descricao;
+    }
+
+    public FormaPagamento getFormaPagamento() {
+        return formaPagamento;
+    }
+
+    public void setFormaPagamento(FormaPagamento formaPagamento) {
+        this.formaPagamento = formaPagamento;
+    }
 }

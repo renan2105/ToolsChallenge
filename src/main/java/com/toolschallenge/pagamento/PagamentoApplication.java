@@ -1,4 +1,4 @@
-package com.toolschallenge.pagamento.pagamento;
+package com.toolschallenge.pagamento;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

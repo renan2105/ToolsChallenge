@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/transacao")
@@ -29,4 +30,15 @@ public class TransacaoResources {
         return ResponseEntity.created(uri).body(transacao);
     }
 
+    @GetMapping(value = "/consulta")
+    public ResponseEntity<List<Transacao>> consultaTodos(){
+        List<Transacao> transacaoList = transacaoService.consultaTodos();
+        return ResponseEntity.ok().body(transacaoList);
+    }
+
+    @GetMapping(value = "/consulta/{id}")
+    public ResponseEntity<Transacao> consulta(@PathVariable Long id){
+        Transacao transacao = transacaoService.consulta(id);
+        return ResponseEntity.ok().body(transacao);
+    }
 }

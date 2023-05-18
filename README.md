@@ -17,7 +17,7 @@ Projeto com intuito de simular apis de pagamentos com tratamento para utilizaç�
 -Api de Pagamento(Método Post que simula um pagamento);
 -Api de Consulta pagamento(Método Get que passando o id de uma transição retorna a informações desta transição, ou se apenas chamar sem passar id retorna todas transições.); <br />
 -Api de Estorno(Método Get que se passa o id de uma transição, simulando assim um estorno e cancelando o pagamento.); <br /> <br />
-*Estou deixando a collection "ToolsChallenge.postman_collection.json" para o postman dentro do projeto no caminho "ToolsChallenge\src\main\resources"); <br />
+*Estou deixando a collection "ToolsChallenge.postman_collection.json" para o postman dentro do projeto no caminho "ToolsChallenge\src\main\resources\collections"); <br />
 
 ### Rodar o Projeto
 

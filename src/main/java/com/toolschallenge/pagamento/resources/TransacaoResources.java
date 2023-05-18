@@ -25,7 +25,7 @@ public class TransacaoResources {
     }
 
     @PostMapping(value = "/pagamento")
-    public ResponseEntity<Transacao> pagamento(@Valid @RequestBody Transacao transacao){
+    public ResponseEntity<Transacao> pagamento(@RequestBody @Valid Transacao transacao){
         transacao = transacaoService.pagamento(transacao);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(transacao.getId()).toUri();
         return ResponseEntity.created(uri).body(transacao);

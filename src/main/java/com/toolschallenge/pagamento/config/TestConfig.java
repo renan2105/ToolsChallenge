@@ -24,7 +24,7 @@ public class TestConfig implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        Transacao transacaoTest = new Transacao(null, "cartao1", new Descricao("10.00", Instant.now(), "renanTutoriais",
+        Transacao transacaoTest = new Transacao(null, "4444000000001234", new Descricao("500.50", Instant.now(), "PetShop Mundo cão",
                 "1234567890", "123456789", DescricaoStatusEnum.AUTORIZADO), new FormaPagamento(FormaPagamentoTipoEnum.AVISTA, 1));
 
         transacaoRepository.save(transacaoTest);

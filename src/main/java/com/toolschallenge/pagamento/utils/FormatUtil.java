@@ -24,5 +24,11 @@ public class FormatUtil {
 
   }
 
+  public String formatResponseCartao(String cartao){
+
+    return cartao.substring(0,4) + "********" + cartao.substring(10,14);
+
+  }
+
 
 }

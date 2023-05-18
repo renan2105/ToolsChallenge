@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,8 +35,8 @@ public class TransacaoService {
       Optional<Transacao> transacaoOptional = transacaoRepository.findById(id);
       Transacao transacao = transacaoOptional.orElseThrow(() -> new ResourceNotFoundException(id));
       transacao.getDescricao().setStatus(DescricaoStatusEnum.CANCELADO);
-      transacao = transacaoRepository.save(transacao);
-      return transacao;
+
+      return formatTransacao(transacaoRepository.save(transacao));
     }
 
     public Transacao pagamento(Transacao transacao){
@@ -46,15 +47,30 @@ public class TransacaoService {
         transacao.getDescricao().setNsu(generateUtil.generateNsu());
         transacao.getDescricao().setCodigoAutorizacao(generateUtil.generateCodigoAutorizacao());
         transacao.getDescricao().setValor(formatUtil.formatValor(transacao.getDescricao().getValor()));
-        return transacaoRepository.save(transacao);
+
+        return formatTransacao(transacaoRepository.save(transacao));
     }
 
     public List<Transacao> consultaTodos(){
-        return transacaoRepository.findAll();
+        List<Transacao> transacaoList = transacaoRepository.findAll();
+
+        for(Transacao transacao : transacaoList){
+            transacao = formatTransacao(transacao);
+        }
+
+        return transacaoList;
     }
 
     public Transacao consulta(Long id){
         Optional<Transacao> transacao = transacaoRepository.findById(id);
-        return transacao.orElseThrow(() -> new ResourceNotFoundException(id));
+        Transacao transacaoDb = transacao.orElseThrow(() -> new ResourceNotFoundException(id));
+
+        return formatTransacao(transacaoDb);
+    }
+
+    public Transacao formatTransacao(Transacao transacao){
+        transacao.setCartao(formatUtil.formatResponseCartao(transacao.getCartao()));
+
+        return transacao;
     }
 }

@@ -1,8 +1,7 @@
 package com.toolschallenge.pagamento.entities;
 
 import com.toolschallenge.pagamento.entities.enums.FormaPagamentoTipoEnum;
-import jakarta.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,10 +9,11 @@ import lombok.NoArgsConstructor;
 @Data
 public class FormaPagamento {
 
-    @NotBlank(message = "Tipo de pagamento deve ser informado.")
+
+    @NotNull(message = "Tipo do pagamento não pode ser nulo.")
     private Integer tipo;
 
-    @NotBlank(message = "Parcelas deve ser informado.")
+    @NotNull(message = "Quantidade de parcelas não pode ser nulo.")
     private Integer parcelas;
 
 
@@ -21,6 +21,7 @@ public class FormaPagamento {
         setTipo(tipo);
         this.parcelas = parcelas;
     }
+
 
     public FormaPagamentoTipoEnum getTipo() {
         return FormaPagamentoTipoEnum.valueOf(tipo);

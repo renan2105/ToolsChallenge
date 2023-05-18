@@ -1,6 +1,7 @@
 package com.toolschallenge.pagamento.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,12 +20,14 @@ public class Transacao implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Cartão deve ser informado.")
+    @NotBlank(message = "Cartão não pode ser nulo ou vazio.")
     private String cartao;
 
+    @Valid
     @Embedded
     private Descricao descricao;
 
+    @Valid
     @Embedded
     private FormaPagamento formaPagamento;
 

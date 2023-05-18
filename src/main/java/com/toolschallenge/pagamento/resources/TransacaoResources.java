@@ -2,9 +2,9 @@ package com.toolschallenge.pagamento.resources;
 
 import com.toolschallenge.pagamento.entities.Transacao;
 import com.toolschallenge.pagamento.services.TransacaoService;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -25,7 +25,7 @@ public class TransacaoResources {
     }
 
     @PostMapping(value = "/pagamento")
-    public ResponseEntity<Transacao> pagamento(@RequestBody @Valid Transacao transacao){
+    public ResponseEntity<Transacao> pagamento(@Validated @RequestBody Transacao transacao){
         transacao = transacaoService.pagamento(transacao);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(transacao.getId()).toUri();
         return ResponseEntity.created(uri).body(transacao);

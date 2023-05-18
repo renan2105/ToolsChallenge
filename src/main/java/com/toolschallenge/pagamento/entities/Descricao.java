@@ -13,13 +13,14 @@ import java.time.Instant;
 @AllArgsConstructor
 @Data
 public class Descricao {
-    @NotBlank(message = "Valor deve ser informado.")
+
+    @NotBlank(message = "Valor da transação não pode ser nulo ou vazio.")
     private String valor;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss", timezone = "GMT-3")
     private Instant dataHora;
 
-    @NotBlank(message = "Nome do estabelecimento deve ser informado.")
+    @NotBlank(message = "Nome de estabelecimento não pode ser nulo ou vazio.")
     private String estabelecimento;
 
     private String nsu;

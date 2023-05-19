@@ -1,4 +1,4 @@
-package com.toolschallenge.pagamento.resources;
+package com.toolschallenge.pagamento.controllers;
 
 import com.toolschallenge.pagamento.entities.Transacao;
 import com.toolschallenge.pagamento.services.TransacaoService;
@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/transacao")
-public class TransacaoResources {
+public class TransacaoController {
 
     @Autowired
     private TransacaoService transacaoService;

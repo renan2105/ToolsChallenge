@@ -20,6 +20,11 @@ public class TransacaoGenerateUtil {
                 "1234567890", "123456789", DescricaoStatusEnum.AUTORIZADO), new FormaPagamento(FormaPagamentoTipoEnum.AVISTA, 1));
     }
 
+    public static Transacao generateInvalidCardTransacao(){
+        return new Transacao(1L, "44441234", new Descricao("500.50", Instant.now(), "PetShop Mundo cão",
+                "1234567890", "123456789", DescricaoStatusEnum.AUTORIZADO), new FormaPagamento(FormaPagamentoTipoEnum.AVISTA, 1));
+    }
+
 
 
 }

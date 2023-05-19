@@ -1,6 +1,6 @@
 package com.toolschallenge.pagamento.services.exceptions;
 
-import com.toolschallenge.pagamento.resources.exceptions.StandardError;
+import com.toolschallenge.pagamento.controllers.exceptions.StandardError;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

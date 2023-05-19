@@ -1,4 +1,4 @@
-package com.toolschallenge.pagamento.resources;
+package com.toolschallenge.pagamento.controllers;
 
 import com.toolschallenge.pagamento.entities.Transacao;
 import com.toolschallenge.pagamento.services.TransacaoService;
@@ -16,10 +16,10 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import java.util.List;
 
 @ExtendWith(SpringExtension.class)
-class TransacaoResourcesTest {
+class TransacaoControllerTest {
 
     @InjectMocks
-    private TransacaoResources transacaoResources;
+    private TransacaoController transacaoController;
 
     @Mock
     private TransacaoService transacaoServiceMock;
@@ -45,7 +45,7 @@ class TransacaoResourcesTest {
 
         Transacao expectedTransacao = TransacaoGenerateUtil.generateValidTransacao();
 
-        Transacao transacaoResponse = transacaoResources.estorno(1l).getBody();
+        Transacao transacaoResponse = transacaoController.estorno(1L).getBody();
 
         Assertions.assertThat(transacaoResponse).isNotNull();
         Assertions.assertThat(transacaoResponse.getId()).isEqualTo(expectedTransacao.getId());
@@ -57,7 +57,7 @@ class TransacaoResourcesTest {
 
         Transacao expectedTransacao = TransacaoGenerateUtil.generateValidTransacao();
 
-        Transacao pagamentoResponse = transacaoResources.pagamento(new Transacao()).getBody();
+        Transacao pagamentoResponse = transacaoController.pagamento(new Transacao()).getBody();
 
         Assertions.assertThat(pagamentoResponse).isNotNull();
         Assertions.assertThat(pagamentoResponse.getId()).isEqualTo(expectedTransacao.getId());
@@ -69,7 +69,7 @@ class TransacaoResourcesTest {
 
         Transacao expectedTransacao = TransacaoGenerateUtil.generateValidTransacao();
 
-        List<Transacao> consultaTodosResponse = transacaoResources.consultaTodos().getBody();
+        List<Transacao> consultaTodosResponse = transacaoController.consultaTodos().getBody();
 
         Assertions.assertThat(consultaTodosResponse).isNotEmpty();
         Assertions.assertThat(consultaTodosResponse.get(0).getId()).isEqualTo(expectedTransacao.getId());
@@ -81,7 +81,7 @@ class TransacaoResourcesTest {
 
         Transacao expectedTransacao = TransacaoGenerateUtil.generateValidTransacao();
 
-        Transacao consultaResponse = transacaoResources.consulta(1L).getBody();
+        Transacao consultaResponse = transacaoController.consulta(1L).getBody();
 
         Assertions.assertThat(consultaResponse).isNotNull();
         Assertions.assertThat(consultaResponse.getId()).isEqualTo(expectedTransacao.getId());

@@ -1,4 +1,4 @@
-package com.toolschallenge.pagamento.resources.exceptions;
+package com.toolschallenge.pagamento.controllers.exceptions;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;

@@ -28,13 +28,16 @@ class TransacaoResourcesTest {
     @BeforeEach
     void setup(){
         Transacao transacaoEstorno = TransacaoGenerateUtil.generateValidTransacao();
-        BDDMockito.when(transacaoServiceMock.estorno(ArgumentMatchers.any())).thenReturn(transacaoEstorno);
+        BDDMockito.when(transacaoServiceMock.estorno(ArgumentMatchers.anyLong())).thenReturn(transacaoEstorno);
 
         List<Transacao> transacaoConsultaTodos = List.of(TransacaoGenerateUtil.generateValidTransacao());
         BDDMockito.when(transacaoServiceMock.ListAllTransacao()).thenReturn(transacaoConsultaTodos);
 
         Transacao transacaoConsulta = TransacaoGenerateUtil.generateValidTransacao();
-        BDDMockito.when(transacaoServiceMock.findTransacaoById(ArgumentMatchers.any())).thenReturn(transacaoConsulta);
+        BDDMockito.when(transacaoServiceMock.findTransacaoById(ArgumentMatchers.anyLong())).thenReturn(transacaoConsulta);
+
+        Transacao transacaoPagamento = TransacaoGenerateUtil.generateValidTransacao();
+        BDDMockito.when(transacaoServiceMock.pagamento(ArgumentMatchers.any(Transacao.class))).thenReturn(transacaoPagamento);
     }
 
     @Test
@@ -42,10 +45,22 @@ class TransacaoResourcesTest {
 
         Transacao expectedTransacao = TransacaoGenerateUtil.generateValidTransacao();
 
-        Transacao transacaoResponse = transacaoResources.estorno(null).getBody();
+        Transacao transacaoResponse = transacaoResources.estorno(1l).getBody();
 
         Assertions.assertThat(transacaoResponse).isNotNull();
         Assertions.assertThat(transacaoResponse.getId()).isEqualTo(expectedTransacao.getId());
+
+    }
+
+    @Test
+    void pagamento_Successful(){
+
+        Transacao expectedTransacao = TransacaoGenerateUtil.generateValidTransacao();
+
+        Transacao pagamentoResponse = transacaoResources.pagamento(new Transacao()).getBody();
+
+        Assertions.assertThat(pagamentoResponse).isNotNull();
+        Assertions.assertThat(pagamentoResponse.getId()).isEqualTo(expectedTransacao.getId());
 
     }
 
@@ -66,7 +81,7 @@ class TransacaoResourcesTest {
 
         Transacao expectedTransacao = TransacaoGenerateUtil.generateValidTransacao();
 
-        Transacao consultaResponse = transacaoResources.consulta(null).getBody();
+        Transacao consultaResponse = transacaoResources.consulta(1L).getBody();
 
         Assertions.assertThat(consultaResponse).isNotNull();
         Assertions.assertThat(consultaResponse.getId()).isEqualTo(expectedTransacao.getId());

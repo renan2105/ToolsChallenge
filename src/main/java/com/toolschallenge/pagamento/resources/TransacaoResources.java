@@ -33,13 +33,13 @@ public class TransacaoResources {
 
     @GetMapping(value = "/consulta")
     public ResponseEntity<List<Transacao>> consultaTodos(){
-        List<Transacao> transacaoList = transacaoService.consultaTodos();
+        List<Transacao> transacaoList = transacaoService.ListAllTransacao();
         return ResponseEntity.ok().body(transacaoList);
     }
 
     @GetMapping(value = "/consulta/{id}")
     public ResponseEntity<Transacao> consulta(@PathVariable Long id){
-        Transacao transacao = transacaoService.consulta(id);
+        Transacao transacao = transacaoService.findTransacaoById(id);
         return ResponseEntity.ok().body(transacao);
     }
 }

@@ -1,6 +1,7 @@
 package com.toolschallenge.pagamento.repositories;
 
 import com.toolschallenge.pagamento.entities.Transacao;
+import com.toolschallenge.pagamento.utils.TransacaoGenerateUtil;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ class TransacaoRepositoryTest {
     @Test
     public void save_Transacao_Successful(){
 
-        Transacao transacao = createTransacao();
+        Transacao transacao = TransacaoGenerateUtil.generateValidTransacaoToSave();
         Transacao transacaoDb = this.transacaoRepository.save(transacao);
 
         Assertions.assertThat(transacaoDb).isNotNull();
@@ -30,7 +31,7 @@ class TransacaoRepositoryTest {
     @Test
     public void update_Transacao_Successful(){
 
-        Transacao transacao = createTransacao();
+        Transacao transacao = TransacaoGenerateUtil.generateValidTransacaoToSave();
         Transacao transacaoDb = this.transacaoRepository.save(transacao);
 
         String newCartao = "3333111111114321";
@@ -46,7 +47,7 @@ class TransacaoRepositoryTest {
     @Test
     public void find_Transacao_ById_Successful(){
 
-        Transacao transacao = createTransacao();
+        Transacao transacao = TransacaoGenerateUtil.generateValidTransacaoToSave();
         Transacao transacaoDb = this.transacaoRepository.save(transacao);
 
         Long transacaoId = transacaoDb.getId();
@@ -59,7 +60,7 @@ class TransacaoRepositoryTest {
     @Test
     public void findAll_Transacao_Successful(){
 
-        Transacao transacao = createTransacao();
+        Transacao transacao = TransacaoGenerateUtil.generateValidTransacaoToSave();
         this.transacaoRepository.save(transacao);
 
         transacao.setCartao("3333111111114321");
@@ -69,10 +70,6 @@ class TransacaoRepositoryTest {
 
         Assertions.assertThat(transacaoList).isNotEmpty();
 
-    }
-
-    private Transacao createTransacao(){
-        return new Transacao(null, "4444000000001234", null, null);
     }
 
 }

@@ -7,13 +7,13 @@ import java.util.Random;
 @Component
 public class GenerateUtil {
 
-    public String generateNsu(){
+    public static  String generateNsu(){
         Random random = new Random();
         long nsu = random.nextLong(9999999999L);
         return Long.toString(nsu);
     }
 
-    public String generateCodigoAutorizacao(){
+    public static  String generateCodigoAutorizacao(){
         Random random = new Random();
         long nsu = random.nextLong(999999999L);
         return Long.toString(nsu);

@@ -8,9 +8,9 @@ import java.util.Locale;
 @Component
 public class FormatUtil {
 
-  Locale localeBR = new Locale("pt","BR");
-  NumberFormat numberFormat = NumberFormat.getCurrencyInstance(localeBR);
-  public String formatValor(String valor){
+  private static final Locale localeBR = new Locale("pt","BR");
+  private static final NumberFormat numberFormat = NumberFormat.getCurrencyInstance(localeBR);
+  public static String formatValor(String valor){
 
     if(valor.contains(",")) {
       valor = valor.replaceAll("[^0-9]+", "");
@@ -24,7 +24,7 @@ public class FormatUtil {
 
   }
 
-  public String formatResponseCartao(String cartao){
+  public static  String formatResponseCartao(String cartao){
 
     return cartao.substring(0,4) + "********" + cartao.substring(10,14);
 

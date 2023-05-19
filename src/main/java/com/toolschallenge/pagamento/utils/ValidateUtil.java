@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class ValidateUtil {
 
-    public void validateCartao(String cartao){
+    public static void validateCartao(String cartao){
 
         String formatedCartao = cartao.replaceAll("[^0-9]+", "");
         if(formatedCartao.length() < 16)
